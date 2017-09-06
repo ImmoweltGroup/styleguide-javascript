@@ -14,7 +14,19 @@
     "jest:watch": "npm run jest -- --watch",
     "jest:coverage": "npm run jest -- --coverage",
     "postinstall": "node src/postinstall.js",
-    "preuninstall": "node src/preuninstall.js"
+    "preuninstall": "node src/preuninstall.js",
+    "precommit": "lint-staged",
+    "semantic-release": "semantic-release pre && npm publish --access=public && semantic-release post"
+  },
+  "lint-staged": {
+    "src/**/*.{js,json,css}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "release": {
+    "analyzeCommits": "@inkdpixels/commit-analyzer",
+    "generateNotes": "@inkdpixels/release-notes-generator"
   },
   "engines": {
     "node": ">=8.2.0",
@@ -23,14 +35,27 @@
   "devDependencies": {
     "@immowelt/eslint-config-immowelt-react": "^1.0.0",
     "@immowelt/jest-preset-node": "^1.0.0",
+    "@inkdpixels/commit-analyzer": "^1.0.1",
+    "@inkdpixels/release-notes-generator": "^1.0.1",
     "eslint": "4.6.1",
+    "husky": "^0.14.3",
     "jest": "^21.0.1",
+    "lint-staged": "^4.1.1",
     "mock-fs": "^4.4.1",
     "prettier": "^1.6.1",
+    "semantic-release": "^7.0.2",
     "sinon": "^3.2.1"
   },
   "jest": {
-    "preset": "@immowelt/jest-preset-node"
+    "preset": "@immowelt/jest-preset-node",
+    "coverageThreshold": {
+      "global": {
+        "branches": 60,
+        "functions": 60,
+        "lines": 60,
+        "statements": 60
+      }
+    }
   },
   "repository": {
     "type": "git",
