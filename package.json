@@ -14,7 +14,14 @@
     "jest:watch": "npm run jest -- --watch",
     "jest:coverage": "npm run jest -- --coverage",
     "postinstall": "node src/postinstall.js",
-    "preuninstall": "node src/preuninstall.js"
+    "preuninstall": "node src/preuninstall.js",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "src/**/*.{js,json,css}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "engines": {
     "node": ">=8.2.0",
@@ -24,7 +31,9 @@
     "@immowelt/eslint-config-immowelt-react": "^1.0.0",
     "@immowelt/jest-preset-node": "^1.0.0",
     "eslint": "4.5.0",
+    "husky": "^0.14.3",
     "jest": "^20.0.4",
+    "lint-staged": "^4.1.1",
     "mock-fs": "^4.4.1",
     "prettier": "^1.6.1",
     "sinon": "^3.2.1"
