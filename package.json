@@ -8,8 +8,8 @@
   "main": "src/index.js",
   "scripts": {
     "test": "npm run lint && npm run jest:coverage",
-    "lint": "eslint src || true",
-    "prettier": "prettier src/**/*.js",
+    "lint": "eslint src",
+    "prettier": "prettier --write src/**/*.js",
     "jest": "jest",
     "jest:watch": "npm run jest -- --watch",
     "jest:coverage": "npm run jest -- --coverage",
@@ -33,23 +33,18 @@
     "npm": ">=5.3.0"
   },
   "devDependencies": {
-    "@immowelt/eslint-config-immowelt-react": "^1.0.0",
+    "@immowelt/eslint-config-immowelt-react": "^2.0.0",
     "@immowelt/jest-preset-node": "^1.0.0",
     "@inkdpixels/commit-analyzer": "^1.0.1",
     "@inkdpixels/release-notes-generator": "^1.0.1",
-    "eslint": "4.6.1",
+    "eslint": "4.5.0",
     "husky": "^0.14.3",
-    "jest": "^21.0.1",
+    "jest": "^20.0.4",
     "lint-staged": "^4.1.1",
     "mock-fs": "^4.4.1",
     "prettier": "^1.6.1",
-    "semantic-release": "^7.0.2",
+    "semantic-release": "^7.0.1",
     "sinon": "^3.2.1"
-  },
-  "devDependencies": {
-    "husky": "^0.14.3",
-    "lint-staged": "^4.1.1",
-    "prettier": "^1.6.1"
   },
   "jest": {
     "preset": "@immowelt/jest-preset-node",

@@ -1,10 +1,6 @@
-const mockFs = require('mock-fs');
-const sinon = require('sinon');
 const config = require('./config.js');
 
 describe('config', () => {
-  let cwd;
-
   it('should an object.', () => {
     expect(typeof config).toBe('object');
   });
