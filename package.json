@@ -15,7 +15,7 @@
     "jest:coverage": "npm run jest -- --coverage",
     "postinstall": "node src/postinstall.js",
     "preuninstall": "node src/preuninstall.js",
-    "precommit": "lint-staged",
+    "precommit": "lint-staged && npm test",
     "semantic-release": "semantic-release pre && npm publish --access=public && semantic-release post"
   },
   "lint-staged": {
