@@ -10,19 +10,22 @@ describe('createLink()', () => {
   let writeFileSync;
 
   beforeEach(() => {
-    cwd = sinon.stub(process, 'cwd').returns('/foo/bar');
+    cwd = sinon.stub(process, 'cwd').returns('/foo/node_modules/bar');
     symlinkSync = sinon.stub(symlink, 'sync');
     writeFileSync = sinon.stub(fs, 'writeFileSync');
 
-    mockFs({
-      '/foo/bar/.gitignore': `
+    mockFs(
+      {
+        '/foo/.gitignore': `
 packages/*/.gitignore
 .editorconfig
       `
-    }, {
-      createCwd: false,
-      createTmp: false
-    });
+      },
+      {
+        createCwd: false,
+        createTmp: false
+      }
+    );
   });
 
   afterEach(() => {

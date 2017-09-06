@@ -5,9 +5,13 @@ const pkg = require('./../../package.json');
 
 function createLink(fileName) {
   const cwd = process.cwd();
-  const gitIgnorePath = path.join(cwd, '.gitignore');
-  const src = path.join(__dirname, '..', '..', fileName);
-  const dest = path.join(cwd, fileName);
+  const parts = cwd.split(path.sep);
+  const packageCwd = parts
+    .filter((el, i) => i < parts.indexOf('node_modules'))
+    .join(path.sep);
+  const gitIgnorePath = path.join(packageCwd, '.gitignore');
+  const src = path.join(cwd, fileName);
+  const dest = path.join(packageCwd, fileName);
 
   //
   // Create the symlink if not already existing.
@@ -35,11 +39,7 @@ function createLink(fileName) {
 ${fileName}
 `;
 
-    fs.writeFileSync(
-      gitIgnorePath,
-      preparedGitIgnore,
-      'utf-8'
-    );
+    fs.writeFileSync(gitIgnorePath, preparedGitIgnore, 'utf-8');
   }
 }
 
