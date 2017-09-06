@@ -37,7 +37,6 @@
     "url": "https://github.com/ImmoweltGroup/styleguide-javascript.git"
   },
   "dependencies": {
-    "path-type": "^3.0.0",
     "symlink-or-copy": "^1.1.8"
   }
 }

@@ -16,5 +16,11 @@ npm i -D @immowelt/styleguide-javascript
 
 This will automatically setup symlinks to the `.editorconfig` and `.prettierrc` in your project root and add them to your `.gitginore` if possible.
 
+## Styleguide
+We use [prettier](https://github.com/prettier/prettier) as a code style since it is the de-facto standard and easy to automatically keep a consistent style in projects.
+
+You might also be interested in our ESLint config presets:
+* [eslint-config-immowelt-react](https://github.com/ImmoweltGroup/eslint-config-immowelt-react)
+
 ## License
 See the LICENSE file at the root of the repository.
