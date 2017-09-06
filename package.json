@@ -47,7 +47,15 @@
     "sinon": "^3.2.1"
   },
   "jest": {
-    "preset": "@immowelt/jest-preset-node"
+    "preset": "@immowelt/jest-preset-node",
+    "coverageThreshold": {
+      "global": {
+        "branches": 60,
+        "functions": 60,
+        "lines": 60,
+        "statements": 60
+      }
+    }
   },
   "repository": {
     "type": "git",

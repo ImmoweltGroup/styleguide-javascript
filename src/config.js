@@ -1,11 +1,13 @@
+const path = require('path');
+const fs = require('fs');
 const pkg = require('./../package.json');
 
 module.exports = {
   symlinkedFiled: ['.editorconfig', '.prettierrc'],
-  isExecutedInPackage() {
-    const pkgName = pkg.name.split('/').pop();
+  isExecutedInOwnScope() {
     const cwd = process.cwd();
+    const parentPackageJson = path.join(cwd, '..', '..', 'package.json');
 
-    return cwd.includes(pkgName);
+    return fs.existsSync(parentPackageJson) === false;
   }
 };

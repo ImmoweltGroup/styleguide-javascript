@@ -3,8 +3,10 @@ const config = require('./config.js');
 const pkg = require('./../package.json');
 
 function onPostInstall() {
-  if (config.isExecutedInPackage()) {
-    console.log(`${pkg.name}: "postinstall" script executed within it's own scope, aborting.`);
+  if (config.isExecutedInOwnScope()) {
+    console.log(
+      `${pkg.name}: "postinstall" script executed within it's own scope, aborting.`
+    );
     return;
   }
 
