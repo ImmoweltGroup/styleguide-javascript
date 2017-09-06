@@ -34,7 +34,6 @@ function createLink(fileName) {
 
   if (!isIgnored) {
     const preparedGitIgnore = `${gitIgnore}
-
 # Ignore the symlink "${fileName}" from the ${pkg.name} package.
 ${fileName}
 `;
