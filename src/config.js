@@ -4,5 +4,5 @@ const pkg = require('./../package.json');
 
 module.exports = {
   symlinkedFiled: ['.editorconfig', '.prettierrc'],
-  isExecutedInOwnScope: require('am-i-a-dependency')
+  isExecutedAsDependency: require('am-i-a-dependency')
 };

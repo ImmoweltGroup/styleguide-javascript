@@ -13,7 +13,7 @@ describe('config', () => {
     expect(config.symlinkedFiled instanceof Array).toBe(true);
   });
 
-  it('should contain a function under the "isExecutedInOwnScope" key.', () => {
-    expect(typeof config.isExecutedInOwnScope).toBe('function');
+  it('should contain a function under the "isExecutedAsDependency" key.', () => {
+    expect(typeof config.isExecutedAsDependency).toBe('function');
   });
 });

@@ -2,7 +2,7 @@ const config = require('./config.js');
 const pkg = require('./../package.json');
 
 function onPreUninstall() {
-  if (config.isExecutedInOwnScope()) {
+  if (!config.isExecutedAsDependency()) {
     return console.log(
       `${pkg.name}: "preuninstall" script executed within it's own scope, aborting.`,
       process.cwd()
