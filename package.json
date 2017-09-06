@@ -16,7 +16,7 @@
     "postinstall": "node src/postinstall.js",
     "preuninstall": "node src/preuninstall.js",
     "precommit": "lint-staged",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release pre && npm publish --access=public && semantic-release post"
   },
   "lint-staged": {
     "src/**/*.{js,json,css}": [
