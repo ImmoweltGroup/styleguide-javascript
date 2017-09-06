@@ -4,10 +4,10 @@ const pkg = require('./../package.json');
 
 function onPostInstall() {
   if (config.isExecutedInOwnScope()) {
-    console.log(
-      `${pkg.name}: "postinstall" script executed within it's own scope, aborting.`
+    return console.log(
+      `${pkg.name}: "postinstall" script executed within it's own scope, aborting.`,
+      process.cwd()
     );
-    return;
   }
 
   config.symlinkedFiled.forEach(fileName => createLink(fileName));

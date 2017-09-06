@@ -3,10 +3,10 @@ const pkg = require('./../package.json');
 
 function onPreUninstall() {
   if (config.isExecutedInOwnScope()) {
-    console.log(
-      `${pkg.name}: "preuninstall" script executed within it's own scope, aborting.`
+    return console.log(
+      `${pkg.name}: "preuninstall" script executed within it's own scope, aborting.`,
+      process.cwd()
     );
-    return;
   }
 
   config.symlinkedFiled.forEach(fileName => {
