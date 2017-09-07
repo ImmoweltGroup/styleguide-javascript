@@ -1,17 +1,16 @@
 const config = require('./config.js');
-const pkg = require('./../package.json');
+const logger = require('./logger');
 
 function onPreUninstall() {
   if (!config.isExecutedAsDependency()) {
-    return console.log(
-      `${pkg.name}: "preuninstall" script executed within it's own scope, aborting.`,
-      process.cwd()
+    return logger.error(
+      '"preuninstall" script executed within it\'s own scope, aborting.'
     );
   }
 
   config.symlinkedFiled.forEach(fileName => {
-    console.log(
-      `${pkg.name}: Removal of symlink pointer for file ${fileName} is up to you, don't forget to remove the ignore statement in your projects ".gitignore". :-)`
+    logger.info(
+      `Removal of symlink pointer for file ${fileName} is up to you, don't forget to remove the ignore statement in your projects ".gitignore". :-)`
     );
   });
 }
