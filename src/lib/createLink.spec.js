@@ -2,6 +2,7 @@ const mockFs = require('mock-fs');
 const sinon = require('sinon');
 const symlink = require('symlink-or-copy');
 const fs = require('fs');
+const path = require('path');
 const createLink = require('./createLink.js');
 
 describe('createLink()', () => {
@@ -10,7 +11,9 @@ describe('createLink()', () => {
   let writeFileSync;
 
   beforeEach(() => {
-    cwd = sinon.stub(process, 'cwd').returns('/foo/node_modules/bar');
+    cwd = sinon
+      .stub(process, 'cwd')
+      .returns(path.resolve('/foo/node_modules/bar'));
     symlinkSync = sinon.stub(symlink, 'sync');
     writeFileSync = sinon.stub(fs, 'writeFileSync');
 
