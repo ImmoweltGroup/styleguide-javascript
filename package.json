@@ -37,7 +37,7 @@
     "@immowelt/jest-preset-node": "^1.0.0",
     "@inkdpixels/commit-analyzer": "^1.0.1",
     "@inkdpixels/release-notes-generator": "^1.0.1",
-    "eslint": "4.7.0",
+    "eslint": "4.7.1",
     "husky": "^0.14.3",
     "jest": "^21.0.2",
     "lint-staged": "^4.1.1",
