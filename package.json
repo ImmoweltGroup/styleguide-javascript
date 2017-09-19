@@ -29,8 +29,8 @@
     "generateNotes": "@inkdpixels/release-notes-generator"
   },
   "engines": {
-    "node": ">=8.2.0",
-    "npm": ">=5.3.0"
+    "node": ">=8.0.0",
+    "npm": ">=5.0.0"
   },
   "devDependencies": {
     "@immowelt/eslint-config-immowelt-react": "^2.0.0",
