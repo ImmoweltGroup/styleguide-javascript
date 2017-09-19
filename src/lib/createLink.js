@@ -2,6 +2,7 @@ const symlink = require('symlink-or-copy');
 const path = require('path');
 const fs = require('fs');
 const pkg = require('./../../package.json');
+const logger = require('./../logger');
 
 function createLink(fileName) {
   const cwd = process.cwd();
@@ -17,7 +18,7 @@ function createLink(fileName) {
   // Create the symlink if not already existing.
   //
   if (fs.existsSync(dest)) {
-    return;
+    return logger.warn(`File "${dest}" found, skipping`);
   }
 
   symlink.sync(src, dest);
@@ -26,7 +27,7 @@ function createLink(fileName) {
   // Add the file to the gitignore if possible.
   //
   if (!fs.existsSync(gitIgnorePath)) {
-    return;
+    return logger.info(`File "${gitIgnorePath}" not found, skipping`);
   }
 
   const gitIgnore = fs.readFileSync(gitIgnorePath, 'utf-8');
@@ -39,6 +40,7 @@ ${fileName}
 `;
 
     fs.writeFileSync(gitIgnorePath, preparedGitIgnore, 'utf-8');
+    logger.info(`Added entry in file "${gitIgnorePath}"`);
   }
 }
 
