@@ -44,7 +44,7 @@
     "mock-fs": "^4.4.1",
     "prettier": "^1.6.1",
     "semantic-release": "^8.0.0",
-    "sinon": "^3.2.1"
+    "sinon": "^4.0.0"
   },
   "jest": {
     "preset": "@immowelt/jest-preset-node",
