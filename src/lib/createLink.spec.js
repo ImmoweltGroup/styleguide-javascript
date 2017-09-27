@@ -63,4 +63,14 @@ packages/*/.gitignore
     expect(writeFileSync.callCount).toBe(1);
     expect(writeFileSync.args[0][1]).toContain('.prettierrc');
   });
+
+  it('should propagate errors of the symlink-or-copy package if the message does not contain the "EEXIST" code.', () => {
+    symlinkSync.throws(new Error('EEXIST: Foo Bar'));
+
+    expect(() => createLink('.editorconfig')).not.toThrow();
+
+    symlinkSync.throws(new Error('Foo bar'));
+
+    expect(() => createLink('.editorconfig')).toThrow('Foo bar');
+  });
 });

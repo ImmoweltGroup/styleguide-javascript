@@ -18,16 +18,28 @@ function createLink(fileName) {
   // Create the symlink if not already existing.
   //
   if (fs.existsSync(dest)) {
-    return logger.warn(`File "${dest}" found, skipping`);
+    return logger.warn(
+      `File "${dest}" found, skipping the creation of a symlink.`
+    );
   }
 
-  symlink.sync(src, dest);
+  try {
+    symlink.sync(src, dest);
+  } catch (e) {
+    const eExistsErr = e && e.message && e.message.includes('EEXIST');
+
+    if (!eExistsErr) {
+      throw e;
+    }
+  }
 
   //
   // Add the file to the gitignore if possible.
   //
   if (!fs.existsSync(gitIgnorePath)) {
-    return logger.info(`File "${gitIgnorePath}" not found, skipping`);
+    return logger.info(
+      `File "${gitIgnorePath}" not found, skipping adding it to the list of ignores.`
+    );
   }
 
   const gitIgnore = fs.readFileSync(gitIgnorePath, 'utf-8');
@@ -40,7 +52,7 @@ ${fileName}
 `;
 
     fs.writeFileSync(gitIgnorePath, preparedGitIgnore, 'utf-8');
-    logger.info(`Added entry in file "${gitIgnorePath}"`);
+    logger.info(`Added ignore entry in the "${gitIgnorePath}".`);
   }
 }
 
