@@ -36,6 +36,9 @@ You might also be interested in our ESLint config presets:
 
 * [eslint-config-immowelt-react](https://github.com/ImmoweltGroup/eslint-config-immowelt-react)
 
+## IDE configurations
+You will find example configuration guides in the [docs](https://github.com/ImmoweltGroup/styleguide-javascript/tree/master/docs) folder
+
 ## License
 
 See the LICENSE file at the root of the repository.
