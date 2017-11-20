@@ -1,7 +1,12 @@
 {
   "printWidth": 80,
-  "parser": "flow",
   "bracketSpacing": false,
   "singleQuote": true,
-  "semi": true
+  "semi": true,
+  "overrides": [{
+    "files": "*.js",
+    "options": {
+      "parser": "flow"
+    }
+  }]
 }
