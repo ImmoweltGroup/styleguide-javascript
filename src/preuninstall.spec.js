@@ -1,15 +1,13 @@
-const sinon = require('sinon');
 const onPreUninstall = require('./preuninstall.js');
 
 describe('onPreUninstall()', () => {
-  let cwd;
-
   beforeEach(() => {
-    cwd = sinon.stub(process, 'cwd').returns('/foo/bar');
+    jest.spyOn(process, 'cwd').mockImplementation(jest.fn(() => '/foo/bar'));
   });
 
   afterEach(() => {
-    cwd.restore();
+    jest.restoreAllMocks();
+    jest.clearAllMocks();
   });
 
   it('should be a function.', () => {

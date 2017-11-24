@@ -1,21 +1,22 @@
+jest.mock('./../logger.js');
+
 const mockFs = require('mock-fs');
-const sinon = require('sinon');
 const symlink = require('symlink-or-copy');
 const fs = require('fs');
-const path = require('path');
 const createLink = require('./createLink.js');
 
 describe('createLink()', () => {
-  let cwd;
   let symlinkSync;
   let writeFileSync;
 
   beforeEach(() => {
-    cwd = sinon
-      .stub(process, 'cwd')
-      .returns(path.resolve('/foo/node_modules/bar'));
-    symlinkSync = sinon.stub(symlink, 'sync');
-    writeFileSync = sinon.stub(fs, 'writeFileSync');
+    jest
+      .spyOn(process, 'cwd')
+      .mockImplementation(jest.fn(() => '/foo/node_modules/bar'));
+    symlinkSync = jest.spyOn(symlink, 'sync').mockImplementation(jest.fn());
+    writeFileSync = jest
+      .spyOn(fs, 'writeFileSync')
+      .mockImplementation(jest.fn());
 
     mockFs(
       {
@@ -32,10 +33,9 @@ packages/*/.gitignore
   });
 
   afterEach(() => {
-    writeFileSync.restore();
-    symlinkSync.restore();
     mockFs.restore();
-    cwd.restore();
+    jest.restoreAllMocks();
+    jest.clearAllMocks();
   });
 
   it('should be a function.', () => {
@@ -45,31 +45,37 @@ packages/*/.gitignore
   it('should create a symlink if the file is not already existing.', () => {
     createLink('.gitignore');
 
-    expect(symlinkSync.callCount).toBe(0);
+    expect(symlinkSync).toHaveBeenCalledTimes(0);
 
     createLink('.prettierrc');
 
-    expect(symlinkSync.callCount).toBe(1);
-    expect(symlinkSync.args[0][0]).toContain('.prettierrc');
+    expect(symlinkSync).toHaveBeenCalledTimes(1);
+    expect(symlinkSync).toHaveBeenCalledWith(
+      '/foo/node_modules/bar/.prettierrc',
+      '/foo/.prettierrc'
+    );
   });
 
   it('should parse the cwd´s .gitignore and add the symlink to it if not already present.', () => {
     createLink('.editorconfig');
 
-    expect(writeFileSync.callCount).toBe(0);
+    expect(writeFileSync).toHaveBeenCalledTimes(0);
 
     createLink('.prettierrc');
 
-    expect(writeFileSync.callCount).toBe(1);
-    expect(writeFileSync.args[0][1]).toContain('.prettierrc');
+    expect(writeFileSync).toHaveBeenCalledTimes(1);
   });
 
   it('should propagate errors of the symlink-or-copy package if the message does not contain the "EEXIST" code.', () => {
-    symlinkSync.throws(new Error('EEXIST: Foo Bar'));
+    symlinkSync.mockImplementationOnce(() => {
+      throw new Error('EEXIST: Foo Bar');
+    });
 
     expect(() => createLink('.editorconfig')).not.toThrow();
 
-    symlinkSync.throws(new Error('Foo bar'));
+    symlinkSync.mockImplementationOnce(() => {
+      throw new Error('Foo bar');
+    });
 
     expect(() => createLink('.editorconfig')).toThrow('Foo bar');
   });
