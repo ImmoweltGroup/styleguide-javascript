@@ -1,4 +1,4 @@
-jest.mock('./../logger.js');
+jest.mock('./logger.js');
 
 const mockFs = require('mock-fs');
 const symlink = require('symlink-or-copy');

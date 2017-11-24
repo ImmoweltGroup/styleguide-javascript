@@ -1,5 +1,5 @@
+const logger = require('./lib/logger.js');
 const config = require('./config.js');
-const logger = require('./logger');
 
 function onPreUninstall() {
   if (!config.isExecutedAsDependency()) {

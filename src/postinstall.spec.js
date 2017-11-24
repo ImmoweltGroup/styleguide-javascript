@@ -1,3 +1,5 @@
+jest.mock('./lib/logger.js');
+
 const onPostInstall = require('./postinstall.js');
 
 describe('onPostInstall()', () => {

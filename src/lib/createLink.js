@@ -2,7 +2,7 @@ const symlink = require('symlink-or-copy');
 const path = require('path');
 const fs = require('fs');
 const pkg = require('./../../package.json');
-const logger = require('./../logger');
+const logger = require('./logger.js');
 
 function createLink(fileName) {
   const cwd = process.cwd();

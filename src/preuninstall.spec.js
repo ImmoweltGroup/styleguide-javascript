@@ -1,3 +1,5 @@
+jest.mock('./lib/logger.js');
+
 const onPreUninstall = require('./preuninstall.js');
 
 describe('onPreUninstall()', () => {

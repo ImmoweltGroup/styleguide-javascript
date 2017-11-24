@@ -1,6 +1,6 @@
 const createLink = require('./lib/createLink.js');
+const logger = require('./lib/logger.js');
 const config = require('./config.js');
-const logger = require('./logger');
 
 function onPostInstall() {
   if (!config.isExecutedAsDependency()) {
