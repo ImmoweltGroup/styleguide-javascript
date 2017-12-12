@@ -2,7 +2,7 @@
 
 (Version: **`IntelliJ IDEA 2017.2.6`**)
 
-### 1. Downloading / Installing Atom.
+### 1. Downloading / Installing IntelliJ.
 
 First of all download and install [IntelliJ](https://www.jetbrains.com/idea/download/) itself.
 
