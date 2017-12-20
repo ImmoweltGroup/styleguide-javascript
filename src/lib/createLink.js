@@ -1,6 +1,7 @@
 const symlink = require('symlink-or-copy');
 const path = require('path');
 const fs = require('fs');
+const isSymlink = require('is-symlink');
 const pkg = require('./../../package.json');
 const logger = require('./logger.js');
 
@@ -13,6 +14,13 @@ function createLink(fileName) {
   const gitIgnorePath = path.join(packageCwd, '.gitignore');
   const src = path.join(cwd, fileName);
   const dest = path.join(packageCwd, fileName);
+
+  //
+  // Remove old symlinks to always force the correct dest.
+  //
+  if (isSymlink.sync(dest)) {
+    fs.unlinkSync(dest);
+  }
 
   //
   // Create the symlink if not already existing.

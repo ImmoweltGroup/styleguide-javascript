@@ -9,7 +9,7 @@ function onPostInstall() {
     );
   }
 
-  config.symlinkedFiled.forEach(fileName => createLink(fileName));
+  config.symlinkedFiles.forEach(fileName => createLink(fileName));
 }
 
 // Immidiately invoke the function since this file is the entrypoint of the postinstall hook.

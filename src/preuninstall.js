@@ -8,7 +8,7 @@ function onPreUninstall() {
     );
   }
 
-  config.symlinkedFiled.forEach(fileName => {
+  config.symlinkedFiles.forEach(fileName => {
     logger.info(
       `Removal of symlink pointer for file ${fileName} is up to you, don't forget to remove the ignore statement in your projects ".gitignore". :-)`
     );

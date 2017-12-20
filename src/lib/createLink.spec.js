@@ -3,16 +3,23 @@ jest.mock('./logger.js');
 const mockFs = require('mock-fs');
 const symlink = require('symlink-or-copy');
 const fs = require('fs');
+const isSymlink = require('is-symlink');
 const createLink = require('./createLink.js');
 
 describe('createLink()', () => {
   let symlinkSync;
   let writeFileSync;
+  let unlinkSync;
+  let isLink;
 
   beforeEach(() => {
     jest
       .spyOn(process, 'cwd')
       .mockImplementation(jest.fn(() => '/foo/node_modules/bar'));
+    isLink = jest
+      .spyOn(isSymlink, 'sync')
+      .mockImplementation(jest.fn(() => false));
+    unlinkSync = jest.spyOn(fs, 'unlinkSync').mockImplementation(jest.fn());
     symlinkSync = jest.spyOn(symlink, 'sync').mockImplementation(jest.fn());
     writeFileSync = jest
       .spyOn(fs, 'writeFileSync')
@@ -40,6 +47,15 @@ packages/*/.gitignore
 
   it('should be a function.', () => {
     expect(typeof createLink).toBe('function');
+  });
+
+  it('should remove already existing symlinks.', () => {
+    isLink.mockImplementationOnce(() => true);
+
+    createLink('.prettierrc');
+
+    expect(unlinkSync).toHaveBeenCalledTimes(1);
+    expect(unlinkSync).toHaveBeenCalledWith('/foo/.prettierrc');
   });
 
   it('should create a symlink if the file is not already existing.', () => {
