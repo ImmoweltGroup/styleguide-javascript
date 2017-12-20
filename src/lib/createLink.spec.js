@@ -54,6 +54,8 @@ packages/*/.gitignore
 
     createLink('.prettierrc');
 
+    expect(isLink).toHaveBeenCalledTimes(1);
+    expect(isLink).toHaveBeenCalledWith('/foo/.prettierrc');
     expect(unlinkSync).toHaveBeenCalledTimes(1);
     expect(unlinkSync).toHaveBeenCalledWith('/foo/.prettierrc');
   });
