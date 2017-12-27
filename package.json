@@ -7,12 +7,12 @@
   "description": "Styleguide related configuration files for javascript related projects.",
   "main": "src/index.js",
   "scripts": {
-    "test": "npm run lint && npm run jest:coverage",
+    "test": "yarn run lint && yarn run jest:coverage",
     "lint": "eslint src",
     "prettier": "prettier --write src/**/*.js",
     "jest": "jest",
-    "jest:watch": "npm run jest -- --watch",
-    "jest:coverage": "npm run jest -- --coverage",
+    "jest:watch": "yarn run jest -- --watch",
+    "jest:coverage": "yarn run jest -- --coverage",
     "postinstall": "node src/postinstall.js",
     "preuninstall": "node src/preuninstall.js",
     "precommit": "lint-staged && npm test",
@@ -29,11 +29,10 @@
     "generateNotes": "@inkdpixels/release-notes-generator"
   },
   "engines": {
-    "node": ">=8.0.0",
-    "npm": ">=5.0.0"
+    "node": ">=8.0.0"
   },
   "devDependencies": {
-    "@immowelt/eslint-config-immowelt-react": "2.0.2",
+    "@immowelt/eslint-config-immowelt-react": "2.0.3",
     "@immowelt/jest-preset-node": "1.0.1",
     "@inkdpixels/commit-analyzer": "1.0.1",
     "@inkdpixels/release-notes-generator": "1.0.1",

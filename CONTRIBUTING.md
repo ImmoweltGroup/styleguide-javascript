@@ -15,17 +15,17 @@ git clone https://github.com/your-username/styleguide-javascript.git
 ### Testing, Type-Checking and Linting
 To run the tests:
 ```
-npm run test
+yarn run test
 ```
 
 To continuously watch and run the unit-tests, execute the following:
 ```
-npm run jest:watch
+yarn run jest:watch
 ```
 
 To perform linting with `eslint`, run the following:
 ```
-npm run lint
+yarn run lint
 ```
 
 ### New Features
