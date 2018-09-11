@@ -61,7 +61,7 @@
   },
   "dependencies": {
     "am-i-a-dependency": "^1.1.2",
-    "is-symlink": "^0.1.1",
+    "is-symlink": "^1.0.0",
     "log-fancy": "^1.1.2",
     "symlink-or-copy": "^1.1.8"
   }
