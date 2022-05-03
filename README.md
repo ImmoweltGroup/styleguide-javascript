@@ -23,16 +23,6 @@ This will automatically setup symlinks to the `.editorconfig` and `.prettierrc` 
 
 We use [prettier](https://github.com/prettier/prettier) as a code style since it is easy to automatically keep a consistent style in projects.
 
-Basic rules are:
-
-* 2 space indentation
-* Max line length of 80 characters
-* Trim trailing whitespace
-* UTF-8 Charset and `lf` EOL
-* Use Semicolons
-* Use single quotes for strings
-* No spaces between brackets
-
 You might also be interested in our ESLint config presets:
 
 * [eslint-config-immowelt-react](https://github.com/ImmoweltGroup/eslint-config-immowelt-react)
